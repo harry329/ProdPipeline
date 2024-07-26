@@ -1,5 +1,18 @@
+import os
+
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
+
+
+def clean_data():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Construct the path to the census.csv file
+    csv_path = os.path.join(current_dir, '..', '..', 'data', 'census.csv')
+    pd.read_csv(csv_path).dropna(axis=0, inplace=True)
+    print(csv_path)
+    print("data")
 
 
 def process_data(
