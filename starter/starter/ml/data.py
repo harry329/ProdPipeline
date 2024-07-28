@@ -10,7 +10,9 @@ def clean_data():
 
     # Construct the path to the census.csv file
     csv_path = os.path.join(current_dir, '..', '..', 'data', 'census.csv')
-    pd.read_csv(csv_path).dropna(axis=0, inplace=True)
+    df = pd.read_csv(csv_path)
+    df.columns = df.columns.str.strip()
+    df.to_csv(csv_path)
     print(csv_path)
     print("data")
 
@@ -67,7 +69,7 @@ def process_data(
     X_continuous = X.drop(*[categorical_features], axis=1)
 
     if training is True:
-        encoder = OneHotEncoder(sparse=False, handle_unknown="ignore")
+        encoder = OneHotEncoder(sparse_output=False, handle_unknown="ignore")
         lb = LabelBinarizer()
         X_categorical = encoder.fit_transform(X_categorical)
         y = lb.fit_transform(y.values).ravel()
