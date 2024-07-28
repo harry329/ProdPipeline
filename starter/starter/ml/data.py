@@ -12,7 +12,7 @@ def clean_data():
     csv_path = os.path.join(current_dir, '..', '..', 'data', 'census.csv')
     df = pd.read_csv(csv_path)
     df.columns = df.columns.str.strip()
-    df.to_csv(csv_path)
+    df.to_csv(csv_path, index=False)
     print(csv_path)
     print("data")
 
