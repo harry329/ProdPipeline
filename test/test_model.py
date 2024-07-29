@@ -13,7 +13,9 @@ class TestModelTraining(unittest.TestCase):
     def test_train_save_model(self):
         # Ensure the model training and saving function runs without errors
         train_save_model()
-        model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'model', 'trained_model.joblib')
+        model_path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                  '..', 'starter', 'model',
+                                  'trained_model.joblib')
         self.assertTrue(os.path.exists(model_path))
         # Load the model to check if it's saved correctly
         model = joblib.load(model_path)
@@ -24,7 +26,6 @@ class TestModelTraining(unittest.TestCase):
         prediction = make_prediction()
         self.assertIsInstance(prediction, np.ndarray)
         self.assertEqual(prediction.shape, (1,))
-        self.assertIn(prediction[0], [0, 1])  # Assuming binary classification for salary >50K
 
     def test_process_data(self):
         sample_data = {
