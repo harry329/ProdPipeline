@@ -53,7 +53,10 @@ def make_prediction(X=None):
     model_path = os.path.join(current_dir, '..', 'model', 'trained_model.joblib')
     model = joblib.load(model_path)
     if X is None:
-        X = X_test[0].reshape(1, -1)
-    prediction = inference(model, X)
+        data_row = X_test[0].reshape(1, -1)
+    else:
+        data_row = X_test[X].reshape(1, -1)
+    prediction = inference(model, data_row)
     print(prediction)
+    print(type(prediction))
     return prediction
