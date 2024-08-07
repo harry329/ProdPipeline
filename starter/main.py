@@ -30,4 +30,4 @@ async def create_item(item: DataRow):
 if __name__ == "__main__":
     clean_data()
     train_save_model()
-    make_prediction(10)
+    # make_prediction(10)

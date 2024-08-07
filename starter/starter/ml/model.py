@@ -1,5 +1,6 @@
 from sklearn.metrics import fbeta_score, precision_score, recall_score
-from sklearn.linear_model import LinearRegression as lr
+from sklearn.linear_model import LogisticRegression as lr
+from sklearn.preprocessing import StandardScaler
 
 
 # Optional: implement hyperparameter tuning.
@@ -18,8 +19,10 @@ def train_model(X_train, y_train):
     model
         Trained machine learning model.
     """
-    model = lr()
-    model.fit(X_train, y_train)
+    scaler = StandardScaler()
+    X_scaled = scaler.fit_transform(X_train)
+    model = lr(solver='lbfgs', max_iter=1000)
+    model.fit(X_scaled, y_train)
     return model
 
 
